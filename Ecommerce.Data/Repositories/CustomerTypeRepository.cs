@@ -78,7 +78,7 @@ namespace Ecommerce.Data.Repositories
         }
         public async Task<bool> DeleteCustomerType(int CustomerTypeId, string transaction)
         {
-            var CustomerType = await context.CustomerTypes.Include(x => x.Customers).FirstOrDefaultAsync(x => x.CustomerTypeId == CustomerTypeId && x.Status);
+            var CustomerType = await context.CustomerTypes.Include(x => x.Customers.Where(x => x.Status)).FirstOrDefaultAsync(x => x.CustomerTypeId == CustomerTypeId && x.Status);
 
             if (CustomerType == null) {
                 logger.Error($"{transaction} - The customer Type of id {CustomerTypeId} does not exist");
