@@ -134,6 +134,15 @@ namespace Ecommerce.Data.Contexts
 
             #endregion
 
+            #region Invoice
+            modelBuilder.Entity<InvoiceDao>().Property(x => x.Ncf)
+              .HasMaxLength(40)
+              .HasColumnType("nvarchar(40)");
+
+            modelBuilder.Entity<InvoiceDao>().Property(x => x.InvoiceDate)
+              .HasDefaultValue(DateTime.Now);
+
+            #endregion
 
             base.OnModelCreating(modelBuilder);
         }

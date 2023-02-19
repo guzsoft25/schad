@@ -4,6 +4,7 @@ using Ecommerce.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ecommerce.Data.Migrations
 {
     [DbContext(typeof(EcommerceDbContext))]
-    partial class EcommerceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230219184107_ChangeNCFToNull")]
+    partial class ChangeNCFToNull
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,16 +110,13 @@ namespace Ecommerce.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("InvoiceDate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 2, 19, 14, 43, 41, 222, DateTimeKind.Local).AddTicks(1040));
+                        .HasColumnType("datetime2");
 
                     b.Property<decimal>("Itbis")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Ncf")
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("SubTotal")
                         .HasColumnType("decimal(18,2)");
@@ -172,7 +171,7 @@ namespace Ecommerce.Data.Migrations
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 2, 19, 14, 43, 41, 222, DateTimeKind.Local).AddTicks(843));
+                        .HasDefaultValue(new DateTime(2023, 2, 19, 14, 41, 7, 5, DateTimeKind.Local).AddTicks(1850));
 
                     b.Property<int>("EndSequence")
                         .HasColumnType("int");

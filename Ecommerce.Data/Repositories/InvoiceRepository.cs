@@ -49,19 +49,23 @@ namespace Ecommerce.Data.Repositories
             return invoices;
         }
 
+        public async Task<bool> CreateInvoice(InvoiceDao invoice, string transaction)
+        {
 
-        //public async Task<bool> CreateInvoice(InvoiceDao invoice, string transaction)
-        //{
-        //    if (invoice.InvoiceDetails == null || invoice.InvoiceDetails.Count == 0) {
-        //        logger.Error($"{transaction} - Invoice at least one invoice detail is required");
-        //        return false;
-        //    }
+            await context.Invoices.AddAsync(invoice);
 
-        //    //decimal subTotal  = invoice.InvoiceDetails.Sum(x => (x.Price * x.Quantity));
-        //    //decimal itbis = (18 / 100) * subTotal;
-        //    //decimal total = subTotal + itbis;
+            int result = await context.SaveChangesAsync();
 
-        //}
+            if (result > 0) {
+                logger.Info($"{transaction} - The invoice was created successfully");
+                return true;
+            }
+            else
+            {
+                logger.Error($"{transaction} - Not was possible create the invoice");
+                return false;
+            }
+        }
 
     }
 }

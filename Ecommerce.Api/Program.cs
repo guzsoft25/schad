@@ -42,6 +42,7 @@ namespace Ecommerce.Api
                 builder.Services.AddTransient<IProductServices, ProductServices>();
                 builder.Services.AddTransient<ICustomerServices, CustomerServices>();
                 builder.Services.AddTransient<ICustomerTypeServices, CustomerTypeServices>();
+                builder.Services.AddTransient<IInvoiceServices, InvoiceServices>();
 
                 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
